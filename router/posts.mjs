@@ -1,7 +1,17 @@
 import express from "express";
 import * as postController from "../controller/post.mjs";
+import { body } from "express-validator";
+import { validate } from "../middleware/validator.mjs";
 
 const router = express.Router();
+
+// 에러 나면 validator.ms로 넘김
+// 다 끝나면 validate로 가서 결과를 받아온다
+// 그게 validPost에 저장됨
+const validatePost = [
+  body("text").trim().isLength({ min: 4 }).withMessage("최소 4자 이상 입력"),
+  validate,
+];
 
 // 전체 포스트 가져오기
 // 특정 아이디에 대한 포스트 가져오기
@@ -16,11 +26,12 @@ router.get("/:id", postController.getPost);
 
 // 포스트 쓰기
 // http://127.0.0.1:8080/post
-router.post("/", postController.createPost);
+// validatePost를 거쳐서 통과한 애만 넘어감
+router.post("/", validatePost, postController.createPost);
 
 // 포스트 수정하기
 // http://127.0.0.1:8080/post/:id
-router.put("/:id", postController.updatePost);
+router.put("/:id", validatePost, postController.updatePost);
 
 // 포스트 삭제하기
 // http://127.0.0.1:8080/post/:id
