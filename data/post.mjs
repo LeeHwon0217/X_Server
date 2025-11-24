@@ -48,11 +48,13 @@ export async function getAll() {
 
 // 사용자 아이디(userid)에 대한 포스트를 리턴
 export async function getAllByUserid(userid) {
+  // filter() : 배열의 각 요소를 조건에 따라 걸러내는 함수
   return posts.filter((post) => post.userid === userid);
 }
 
 // 글 번호(id)에 대한 포스트를 리턴
 export async function getById(id) {
+  // find() : 배열에서 조건을 만족하는 첫번째 요소만 리턴
   return posts.find((post) => post.id === id);
 }
 

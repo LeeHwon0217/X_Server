@@ -1,6 +1,6 @@
 import express from "express";
 import * as postController from "../controller/post.mjs";
-import { body } from "express-validator";
+import { body } from "express-validator"; // 괄호가 없으면 export default를 가져옴. {필수}
 import { validate } from "../middleware/validator.mjs";
 
 const router = express.Router();
