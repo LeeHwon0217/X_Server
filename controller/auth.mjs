@@ -6,7 +6,7 @@ import { config } from "../config.mjs";
 
 // const secretKey = "abcdefg1234!@#$";
 // const bcryptSaltRounds = 10;
-const jwtExpiresInDays = "2d";
+// const jwtExpiresInDays = "2d";
 
 async function createJwtToken(id) {
   return jwt.sign({ id }, config.jwt.secretKey, {
