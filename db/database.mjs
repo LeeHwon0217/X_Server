@@ -1,8 +1,8 @@
 import { config } from "../config.mjs";
-import Mongoose from "mongoose";
+import mongoose from "mongoose";
 
 export async function connectDB() {
-  return Mongoose.connect(config.db.host, {
+  return mongoose.connect(config.db.host, {
     dbName: "aidetect",
   });
 }
